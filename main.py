@@ -1,10 +1,10 @@
 import requests
 from auth import auth
 from problems import get_submissions, get_problems
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 
 def main():
-	config = load_dotenv('.env')
+	config = dotenv_values('.env')
 	username = config['USERNAME']
 	password = config['PASSWORD']
 
