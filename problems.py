@@ -20,12 +20,14 @@ def get_submissions(user):
         # get all submissions
         rows = table.select('tr[data-submission-id]')
         for row in rows:
+            time = row.find('td', {'data-type': 'time'}).text.strip()
             problem = row.find('td', {'data-type': 'problem'}).text.strip()
             language = row.find('td', {'data-type': 'lang'}).text.strip()
             status = row.find('td', {'data-type': 'status'}).div.text.strip()
 
             # add to user submissions
             user.submissions.append({
+                'time': time,
                 'problem': problem,
                 'language': language,
                 'status': status

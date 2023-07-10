@@ -2,6 +2,7 @@ import requests
 from auth import auth
 from problems import get_submissions, get_problems
 from dotenv import dotenv_values
+from visualize import visualize_submissions_over_time
 
 def main():
 	config = dotenv_values('.env')
@@ -11,8 +12,10 @@ def main():
 	user = auth(username, password)
 
 	if user:
-		get_problems(user)
+		# get_problems(user)
 		get_submissions(user)
+
+		visualize_submissions_over_time(user)
 
 if __name__ == '__main__':
 	main()
