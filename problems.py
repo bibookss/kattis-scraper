@@ -9,7 +9,6 @@ def get_submissions(user):
         page = html_page(requests.get(url, data={'script': 'true'}, cookies=user.cookie))
 
         print(f'Scraping page {index + 1} of submissions...')
-        print(url)
 
         # check if there are no more submissions
         table = page.find('tbody')
@@ -43,7 +42,6 @@ def get_problems(user):
         page = html_page(requests.get(url, data={'script': 'true'}, cookies=user.cookie))
 
         print(f'Scraping page {index + 1} of problems...')
-        print(url)
 
         # check if there are no more problems
         table = page.find('tbody')
@@ -54,7 +52,6 @@ def get_problems(user):
 
         # get all problems
         for row in table.find_all('tr'):
-            print(row.prettify())
             problem_name = row.find('td').a.text.strip()
 
             # find the problem difficulty
