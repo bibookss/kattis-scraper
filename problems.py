@@ -37,13 +37,12 @@ def get_submissions(user):
         index += 1
 		
 def get_problems(user):
+    print('Scraping problems solved...')
+    
     index = 0
-
     while True:
         url = f'https://open.kattis.com/problems?show_solved=on&show_partial=off&show_tried=off&show_untried=off&page={index}'
         page = html_page(requests.get(url, data={'script': 'true'}, cookies=user.cookie))
-
-        print(f'Scraping page {index + 1} of problems...')
 
         # check if there are no more problems
         table = page.find('tbody')
@@ -66,5 +65,7 @@ def get_problems(user):
                 'difficulty': problem_difficulty
             })
 
+        # get next page
+        index += 1
 
-	
+    print('Scraping problems finished...')
