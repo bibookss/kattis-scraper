@@ -2,8 +2,9 @@ import requests
 from utils import html_page
 
 def get_submissions(user):
+    print('Scraping submissions...')
+	    
     index = 0
-
     while True:
         url = f'https://open.kattis.com/users/{user.user}?page={index}'		
         page = html_page(requests.get(url, data={'script': 'true'}, cookies=user.cookie))
@@ -35,6 +36,8 @@ def get_submissions(user):
 
         # get next page
         index += 1
+    
+    print('Scraping submissions finished...')
 		
 def get_problems(user):
     print('Scraping problems solved...')
